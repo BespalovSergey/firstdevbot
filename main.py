@@ -9,7 +9,7 @@ headers = {
 params = {}
 url='https://dvmn.org/api/long_polling/'
 logging.basicConfig(level = logging.DEBUG)
-logger = logging.getLogger('ex')
+
 bot = telegram.Bot(token= os.environ['telegram_token'])
 logging.debug('First bot is started')
 while True:
