@@ -13,7 +13,7 @@ logging.basicConfig(level = logging.DEBUG ,format  = '%(process)d %(levelname)s 
 
 bot = telegram.Bot(token= os.environ['telegram_token'])
 logging.debug('First bot is started')
-bot.send_mesage(chat_id = 814635828 ,text =  'Бот запущен')
+bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
 
 while True:
   
@@ -42,17 +42,17 @@ while True:
         response.raise_for_status()
       except requests.exceptions.HTTPError as http_err:
         logging.error('HTTP response error')
-        bot.send_mesage(chat_id = 814635828 ,text =  crach)
-        bot.send_mesage(chat_id = 814635828 ,text =  http_err) 
+        bot.send_message(chat_id = 814635828 ,text =  crach)
+        bot.send_message(chat_id = 814635828 ,text =  http_err) 
       
       
 
   except requests.exceptions.ReadTimeout as time_err:
     logging.error('ReadTimeout error') 
-    bot.send_mesage(chat_id = 814635828 ,text =  crach)
-    bot.send_mesage(chat_id = 814635828 ,text =  time_err)
+    bot.send_message(chat_id = 814635828 ,text =  crach)
+    bot.send_message(chat_id = 814635828 ,text =  time_err)
   except ConnectionError as con_err:
     logging.error('Connection error')
-    bot.send_mesage(chat_id = 814635828 ,text =  crach)
-    bot.send_mesage(chat_id = 814635828 ,text =  con_err)
+    bot.send_message(chat_id = 814635828 ,text =  crach)
+    bot.send_message(chat_id = 814635828 ,text =  con_err)
    
