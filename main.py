@@ -8,10 +8,10 @@ headers = {
 }
 params = {}
 url='https://dvmn.org/api/long_polling/'
-logging.basicConfig(filename = 'bot.log' ,level = logging.DEBUG, filemode = 'w')
+logging.basicConfig(level = logging.DEBUG)
 logger = logging.getLogger('ex')
 bot = telegram.Bot(token= os.environ['telegram_token'])
-logger.debug('First bot is started')
+logging.debug('First bot is started')
 while True:
   
   try:
@@ -38,12 +38,12 @@ while True:
       try:
         response.raise_for_status()
       except requests.exceptions.HTTPError:
-        logger.exception('HTTP response error')
+        logging.error('HTTP response error')
       
       
 
   except requests.exceptions.ReadTimeout:
-    logger.exception('ReadTimeout error') 
+    logging.error('ReadTimeout error') 
     
   except ConnectionError:
-    logger.exception('Connection error')
+    logging.error('Connection error')
