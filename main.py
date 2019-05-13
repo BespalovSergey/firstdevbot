@@ -35,7 +35,8 @@ while True:
         user_response = '{}{}'.format(message,test_result)   
         bot.send_message(chat_id = 814635828,text  = user_response)
     else:
-      response.raise_for_status()
+      try:
+        response.raise_for_status()
       except requests.exceptions.HTTPError:
         logger.exception('HTTP response error')
       
