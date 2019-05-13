@@ -10,10 +10,10 @@ def main( ):
   params = {}
   crach = 'Бот упал с ошибкой'
   url='https://dvmn.org/api/long_polling/'
-  logging.basicConfig(level = logging.DEBUG ,format  = '%(process)d %(levelname)s %(message)s')
+  logging.basicConfig(level = logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
 
 
-  logging.debug('First bot is started')
+  logging.info('First bot is started')
   bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
 
   while True:
