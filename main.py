@@ -7,15 +7,18 @@ headers = {
   "Authorization":os.environ['devman_token']
 }
 params = {}
+crach = 'Бот упал с ошибкой'
 url='https://dvmn.org/api/long_polling/'
-logging.basicConfig(level = logging.DEBUG)
+logging.basicConfig(level = logging.DEBUG ,format  = '%(process)d %(levelname)s %(message)s')
 
 bot = telegram.Bot(token= os.environ['telegram_token'])
 logging.debug('First bot is started')
+bot.send_mesage(chat_id = 814635828 ,text =  'Бот запущен')
+
 while True:
   
   try:
-    response = requests.get(url= url,params = params, headers = headers ,timeout = 91)
+    response = requests.get(url= url,params = params, headers = headers ,timeout = 5)
     
     if response.ok:
       server_answer = response.json()
@@ -37,13 +40,19 @@ while True:
     else:
       try:
         response.raise_for_status()
-      except requests.exceptions.HTTPError:
+      except requests.exceptions.HTTPError as http_err:
         logging.error('HTTP response error')
+         bot.send_mesage(chat_id = 814635828 ,text =  crach)
+         bot.send_mesage(chat_id = 814635828 ,text =  http_err) 
       
       
 
-  except requests.exceptions.ReadTimeout:
+  except requests.exceptions.ReadTimeout as time_err:
     logging.error('ReadTimeout error') 
-    
-  except ConnectionError:
+    bot.send_mesage(chat_id = 814635828 ,text =  crach)
+    bot.send_mesage(chat_id = 814635828 ,text =  time_err)
+  except ConnectionError as con_err:
     logging.error('Connection error')
+    bot.send_mesage(chat_id = 814635828 ,text =  crach)
+    bot.send_mesage(chat_id = 814635828 ,text =  con_err)
+   
