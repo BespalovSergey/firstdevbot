@@ -3,7 +3,7 @@ import os
 import telegram
 import logging
 
-def main():
+def main( bot):
   headers = {
   "Authorization":os.environ['devman_token']
 }
@@ -60,6 +60,6 @@ while True:
     
 if __name__ == "__main__":
   bot = telegram.Bot(token= os.environ['telegram_token'])
-  main()
+  main( bot )
     
     
