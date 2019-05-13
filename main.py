@@ -4,13 +4,13 @@ import telegram
 import logging
 
 headers = {
-  "Authorization":os.environ('devman_token')
+  "Authorization":os.environ['devman_token']
 }
 params = {}
 url='https://dvmn.org/api/long_polling/'
 logging.basicConfig(filename = 'bot.log' , filemode = 'w')
 logger = logging.getLogger('ex')
-bot = telegram.Bot(token= os.environ('telegram_token'))
+bot = telegram.Bot(token= os.environ['telegram_token'])
 
 while True:
   
