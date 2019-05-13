@@ -42,8 +42,8 @@ while True:
         response.raise_for_status()
       except requests.exceptions.HTTPError as http_err:
         logging.error('HTTP response error')
-         bot.send_mesage(chat_id = 814635828 ,text =  crach)
-         bot.send_mesage(chat_id = 814635828 ,text =  http_err) 
+        bot.send_mesage(chat_id = 814635828 ,text =  crach)
+        bot.send_mesage(chat_id = 814635828 ,text =  http_err) 
       
       
 
