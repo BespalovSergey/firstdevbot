@@ -50,7 +50,7 @@ while True:
   except requests.exceptions.ReadTimeout as time_err:
     logging.error('ReadTimeout error') 
     bot.send_message(chat_id = 814635828 ,text =  crach)
-    bot.send_message(chat_id = 814635828 ,text =  time_err)
+    bot.send_message(chat_id = 814635828 ,text =  time_err.text)
   except ConnectionError as con_err:
     logging.error('Connection error')
     bot.send_message(chat_id = 814635828 ,text =  crach)
