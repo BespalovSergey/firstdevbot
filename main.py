@@ -3,7 +3,8 @@ import os
 import telegram
 import logging
 
-headers = {
+def main():
+  headers = {
   "Authorization":os.environ['devman_token']
 }
 params = {}
@@ -11,7 +12,7 @@ crach = 'Бот упал с ошибкой'
 url='https://dvmn.org/api/long_polling/'
 logging.basicConfig(level = logging.DEBUG ,format  = '%(process)d %(levelname)s %(message)s')
 
-bot = telegram.Bot(token= os.environ['telegram_token'])
+
 logging.debug('First bot is started')
 bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
 
@@ -55,5 +56,10 @@ while True:
     logging.error( con_err)
     bot.send_message(chat_id = 814635828 ,text =  crach)
     bot.send_message(chat_id = 814635828 ,text =  'Connection error')
+
+    
+if __name__ == "__main__":
+  bot = telegram.Bot(token= os.environ['telegram_token'])
+  main()
     
     
