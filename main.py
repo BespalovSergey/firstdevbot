@@ -41,18 +41,19 @@ while True:
       try:
         response.raise_for_status()
       except requests.exceptions.HTTPError as http_err:
-        logging.error('HTTP response error')
+        logging.error( http_err)
         bot.send_message(chat_id = 814635828 ,text =  crach)
-        bot.send_message(chat_id = 814635828 ,text =  http_err) 
+        bot.send_message(chat_id = 814635828 ,text =  'HTTP response error') 
       
       
 
   except requests.exceptions.ReadTimeout as time_err:
-    logging.error('ReadTimeout error') 
+    logging.error( time_err) 
     bot.send_message(chat_id = 814635828 ,text =  crach)
-    bot.send_message(chat_id = 814635828 ,text =  time_err.text)
+    bot.send_message(chat_id = 814635828 ,text = 'ReadTimeout error')
   except ConnectionError as con_err:
-    logging.error('Connection error')
+    logging.error( con_err)
     bot.send_message(chat_id = 814635828 ,text =  crach)
-    bot.send_message(chat_id = 814635828 ,text =  con_err)
-   
+    bot.send_message(chat_id = 814635828 ,text =  'Connection error')
+    
+    
