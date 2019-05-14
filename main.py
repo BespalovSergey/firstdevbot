@@ -2,8 +2,11 @@ import requests
 import os
 import telegram
 import logging
+from logging.handlers import RotatingFileHandler
+# bot_error token 803220816:AAEExBm2x3rZ5Bit0Gy_nrd_EyT4t5dbd6s
 
 def main( ):
+
   headers = {
   "Authorization":os.environ['devman_token']
   }
@@ -12,9 +15,12 @@ def main( ):
   url='https://dvmn.org/api/long_polling/'
   logging.basicConfig(level = logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
 
-
-  logging.info('First bot is started')
-  bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
+  logger = logging.getLogger('first_bot')
+  logger.setLevel(logging.INFO)
+  handler = MyLogsHandler()
+  logger.addHandler(handler)
+  logger.info('I am new logger')
+ # bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
 
   while True:
   
@@ -42,20 +48,20 @@ def main( ):
         try:
           response.raise_for_status()
         except requests.exceptions.HTTPError as http_err:
-          logging.error( http_err)
-          bot.send_message(chat_id = 814635828 ,text =  crach)
-          bot.send_message(chat_id = 814635828 ,text =  'HTTP response error') 
+          logger.error( http_err)
+          #bot.send_message(chat_id = 814635828 ,text =  crach)
+          #bot.send_message(chat_id = 814635828 ,text =  'HTTP response error')
       
       
 
     except requests.exceptions.ReadTimeout as time_err:
-      logging.error( time_err) 
-      bot.send_message(chat_id = 814635828 ,text =  crach)
-      bot.send_message(chat_id = 814635828 ,text = 'ReadTimeout error')
+      logger.error( time_err)
+      #bot.send_message(chat_id = 814635828 ,text =  crach)
+      #bot.send_message(chat_id = 814635828 ,text = 'ReadTimeout error')
     except ConnectionError as con_err:
-      logging.error( con_err)
-      bot.send_message(chat_id = 814635828 ,text =  crach)
-      bot.send_message(chat_id = 814635828 ,text =  'Connection error')
+      logger.error( con_err)
+      #bot.send_message(chat_id = 814635828 ,text =  crach)
+      #bot.send_message(chat_id = 814635828 ,text =  'Connection error')
 
     
 if __name__ == "__main__":
@@ -63,3 +69,8 @@ if __name__ == "__main__":
   main(  )
     
     
+class MyLogsHandler(logging.Handler):
+  def emit(self, record):
+    log_entry = self.format(record)
+    error_bot = telegram.Bot(token= os.environ['bor_error_token'])
+    bot.send_message(chat_id= 814635828, text = log_entry)
