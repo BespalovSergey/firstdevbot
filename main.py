@@ -8,7 +8,7 @@ from logging.handlers import RotatingFileHandler
 class MyLogsHandler(logging.Handler):
   def emit(self, record):
     log_entry = self.format(record)
-    error_bot = telegram.Bot(token= os.environ['bot_error_token'])
+    error_bot.send_message(chat_id= 814635828, text = 'Бот проверок заданий упал с ошибкой')
     error_bot.send_message(chat_id= 814635828, text = log_entry)
 
 def main( ):
@@ -17,7 +17,7 @@ def main( ):
   "Authorization":os.environ['devman_token']
   }
   params = {}
-  crach = 'Бот упал с ошибкой'
+ 
   url='https://dvmn.org/api/long_polling/'
   logging.basicConfig(level = logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
 
@@ -25,8 +25,8 @@ def main( ):
   logger.setLevel(logging.INFO)
   handler = MyLogsHandler()
   logger.addHandler(handler)
-  logger.info('I am new logger')
- # bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
+  logger.info('Бот проверок заданий запущен')
+ 
 
   while True:
   
@@ -55,23 +55,21 @@ def main( ):
           response.raise_for_status()
         except requests.exceptions.HTTPError as http_err:
           logger.error( http_err)
-          #bot.send_message(chat_id = 814635828 ,text =  crach)
-          #bot.send_message(chat_id = 814635828 ,text =  'HTTP response error')
+          
       
       
 
     except requests.exceptions.ReadTimeout as time_err:
       logger.error( time_err)
-      #bot.send_message(chat_id = 814635828 ,text =  crach)
-      #bot.send_message(chat_id = 814635828 ,text = 'ReadTimeout error')
+      
     except ConnectionError as con_err:
       logger.error( con_err)
-      #bot.send_message(chat_id = 814635828 ,text =  crach)
-      #bot.send_message(chat_id = 814635828 ,text =  'Connection error')
+      
 
     
 if __name__ == "__main__":
   bot = telegram.Bot(token= os.environ['telegram_token'])
+  error_bot = telegram.Bot(token= os.environ['bot_error_token'])
   main(  )
     
     
