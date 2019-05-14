@@ -9,7 +9,7 @@ class MyLogsHandler(logging.Handler):
   def emit(self, record):
     log_entry = self.format(record)
     error_bot = telegram.Bot(token= os.environ['bot_error_token'])
-    bot.send_message(chat_id= 814635828, text = log_entry)
+    error_bot.send_message(chat_id= 814635828, text = log_entry)
 
 def main( ):
 
@@ -31,7 +31,7 @@ def main( ):
   while True:
   
     try:
-      response = requests.get(url= url,params = params, headers = headers ,timeout = 91)
+      response = requests.get(url= url,params = params, headers = headers ,timeout = 5)
     
       if response.ok:
         server_answer = response.json()
