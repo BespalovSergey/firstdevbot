@@ -4,7 +4,7 @@ import telegram
 import logging
 
 def main( ):
-  headers = {mm
+  headers = {
   "Authorization":os.environ['devman_token']
   }
   params = {}
