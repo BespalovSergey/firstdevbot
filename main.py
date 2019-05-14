@@ -9,7 +9,7 @@ class MyLogsHandler(logging.Handler):
   def emit(self, record):
     log_entry = self.format(record)
     error_bot = telegram.Bot(token= os.environ['bot_error_token'])
-    error_bot.send_message(chat_id= 814635828, text = log_entry)
+    bot.send_message(chat_id= 814635828, text = log_entry)
 
 def main( ):
 
