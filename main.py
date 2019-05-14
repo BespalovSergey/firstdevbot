@@ -5,6 +5,12 @@ import logging
 from logging.handlers import RotatingFileHandler
 # bot_error token 803220816:AAEExBm2x3rZ5Bit0Gy_nrd_EyT4t5dbd6s
 
+class MyLogsHandler(logging.Handler):
+  def emit(self, record):
+    log_entry = self.format(record)
+    error_bot = telegram.Bot(token= os.environ['bor_error_token'])
+    bot.send_message(chat_id= 814635828, text = log_entry)
+
 def main( ):
 
   headers = {
@@ -69,8 +75,4 @@ if __name__ == "__main__":
   main(  )
     
     
-class MyLogsHandler(logging.Handler):
-  def emit(self, record):
-    log_entry = self.format(record)
-    error_bot = telegram.Bot(token= os.environ['bor_error_token'])
-    bot.send_message(chat_id= 814635828, text = log_entry)
+
