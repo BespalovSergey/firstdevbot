@@ -26,9 +26,10 @@ def main( ):
   logger = logging.getLogger('bot_logger')
   logger.setLevel(logging.INFO)
   handler = MyLogsHandler(telegram.Bot(token= os.environ['bot_error_token']))
+
   logger.addHandler(handler)
 
-  logging.info('First bot is started')
+  logger.info('First bot is started')
   bot.send_message(chat_id = 814635828 ,text =  'Бот запущен')
 
   while True:
