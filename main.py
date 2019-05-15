@@ -8,6 +8,7 @@ import logging
 
 class MyLogsHandler(logging.Handler):
     def __init__(self ):
+      logging.Handler.__init__()
       self.error_bot = telegram.Bot(token= os.environ['bot_error_token'])
 
     def emit(self, record):
@@ -25,10 +26,7 @@ def main( ):
   logging.basicConfig(level= logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
   logger = logging.getLogger('bot_logger')
   #logger.setLevel(logging.INFO)
-
-  handler = MyLogsHandler()
-
-  logger.addHandler(handler)
+  logger.addHandler(MyLogsHandler())
   #logger.info('First bot is started')
 
 
