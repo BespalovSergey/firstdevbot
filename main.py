@@ -13,7 +13,7 @@ class MyLogsHandler(logging.Handler):
 
     def emit(self, record):
       log_entry = self.format(record)
-      error_message = '{}{}'.format("Бот упал с ошибкой \n",log_entry)
+      error_message = '{}{}'.format("Бот проверки заданий упал с ошибкой \n",log_entry)
       self.error_bot.send_message(chat_id = 814635828 ,text =  error_message)
 
 def main( ):
@@ -23,11 +23,11 @@ def main( ):
   params = {}
 
   url='https://dvmn.org/api/long_polling/'
-  logging.basicConfig(level= logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
+  logging.basicConfig(format  = '%(process)d %(levelname)s %(message)s')
   logger = logging.getLogger('bot_logger')
-  #logger.setLevel(logging.INFO)
+  logger.setLevel(logging.INFO)
   logger.addHandler(MyLogsHandler())
-  #logger.info('First bot is started')
+  logger.info('Бот проверки ошибок запущен')
 
 
   while True:
