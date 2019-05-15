@@ -8,6 +8,8 @@ from logging.handlers import RotatingFileHandler
 # bot_error token 803220816:AAEExBm2x3rZ5Bit0Gy_nrd_EyT4t5dbd6s
 
 class MyLogsHandler(logging.Handler):
+    def __init__(self,bot):
+        self.error_bot = bot
     def emit(self, record):
         log_entry = self.format(record)
         error_bot.send_message(chat_id=814635828, text='Бот проверок заданий упал с ошибкой')
@@ -25,7 +27,7 @@ def main():
 
     logger = logging.getLogger('first_bot')
     logger.setLevel(logging.INFO)
-    handler = MyLogsHandler()
+    handler = MyLogsHandler(telegram.Bot(token=os.environ['bot_error_token']))
     logger.addHandler(handler)
     logger.info('Бот проверок заданий запущен')
 
@@ -52,24 +54,19 @@ def main():
                     user_response = '{}{}'.format(message, test_result)
                     bot.send_message(chat_id=814635828, text=user_response)
             else:
-                try:
-                    response.raise_for_status()
-                except requests.exceptions.HTTPError as http_err:
-                    logger.error(http_err)
+
+                response.raise_for_status()
 
 
+        except (requests.exceptions.ReadTimeout  , ConnectionError ,requests.exceptions.HTTPError) as bot_err:
+            logger.error(bot_err)
 
 
-        except requests.exceptions.ReadTimeout as time_err:
-            logger.error(time_err)
-
-        except ConnectionError as con_err:
-            logger.error(con_err)
 
 
 if __name__ == "__main__":
     bot = telegram.Bot(token=os.environ['telegram_token'])
-    error_bot = telegram.Bot(token=os.environ['bot_error_token'])
+
     main()
 
 
