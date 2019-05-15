@@ -22,9 +22,10 @@ def main( ):
   params = {}
 
   url='https://dvmn.org/api/long_polling/'
-  logging.basicConfig(format  = '%(process)d %(levelname)s %(message)s')
+  logging.basicConfig(level= logging.INFO ,format  = '%(process)d %(levelname)s %(message)s')
   logger = logging.getLogger('bot_logger')
-  logger.setLevel(logging.INFO)
+  #logger.setLevel(logging.INFO)
+
   handler = MyLogsHandler()
 
   logger.addHandler(handler)
