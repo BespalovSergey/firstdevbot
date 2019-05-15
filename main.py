@@ -3,6 +3,9 @@ import os
 import telegram
 import logging
 
+#from dotenv import load_dotenv
+#load_dotenv()
+
 class MyLogsHandler(logging.Handler):
     def __init__(self , bot):
       self.error_bot = bot
@@ -22,7 +25,7 @@ def main( ):
   logging.basicConfig(format  = '%(process)d %(levelname)s %(message)s')
   logger = logging.getLogger('bot_logger')
   logger.setLevel(logging.INFO)
-  handler = MyLogsHandler(telegram.Bot(token= os.environ['bot_error_bot']))
+  handler = MyLogsHandler(telegram.Bot(token= os.environ['bot_error_token']))
   logger.addHandler(handler)
 
   logging.info('First bot is started')
