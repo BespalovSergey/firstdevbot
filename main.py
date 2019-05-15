@@ -28,7 +28,7 @@ def main( ):
   handler = MyLogsHandler()
 
   logger.addHandler(handler)
-  logger.info('First bot is started')
+  #logger.info('First bot is started')
 
 
   while True:
