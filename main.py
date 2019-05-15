@@ -8,7 +8,7 @@ import logging
 
 class MyLogsHandler(logging.Handler):
     def __init__(self ):
-      logging.Handler.__init__()
+      logging.Handler.__init__(self)
       self.error_bot = telegram.Bot(token= os.environ['bot_error_token'])
 
     def emit(self, record):
