@@ -29,13 +29,13 @@ def main( ):
   handler = MyLogsHandler()
 
   logger.addHandler(handler)
-  logger.info('First bot is started')
+  #logger.info('First bot is started')
 
 
   while True:
   
     try:
-      response = requests.get(url= url,params = params, headers = headers ,timeout = 91)
+      response = requests.get(url= url,params = params, headers = headers ,timeout = 5)
     
       if response.ok:
         server_answer = response.json()
