@@ -15,8 +15,14 @@ class MyLogsHandler(logging.Handler):
 
     def emit(self, record):
       log_entry = self.format(record)
-      error_message = 'Бот проверки заданий упал с ошибкой \n {}'
-      error_message.format(log_entry)
+      
+      bot_down = 'Бот проверки заданий упал с ошибкой \n'
+      error_message = '{}{}'.format(bot_down , log_entry)
+
+      if log_entry == 'Бот проверки ошибок запущен':
+        error_message = 'Бот проверки ошибок запущен'
+
+
       self.error_bot.send_message(chat_id = self.my_chat_id ,text =  error_message)
 
 def main( ):
