@@ -15,7 +15,7 @@ class MyLogsHandler(logging.Handler):
 
     def emit(self, record):
       log_entry = self.format(record)
-      
+
       bot_down = 'Бот проверки заданий упал с ошибкой \n'
       error_message = '{}{}'.format(bot_down , log_entry)
 
@@ -32,6 +32,10 @@ def main( ):
   params = {}
 
   url='https://dvmn.org/api/long_polling/'
+
+  my_chat_id = os.environ['telegram_chat_id']
+  bot = telegram.Bot(token=os.environ['telegram_token'])
+
   logging.basicConfig(format  = '%(process)d %(levelname)s %(message)s')
   logger = logging.getLogger('bot_logger')
   logger.setLevel(logging.INFO)
@@ -73,9 +77,8 @@ def main( ):
 
     
 if __name__ == "__main__":
+
   load_dotenv()
-  my_chat_id = os.environ['telegram_chat_id']
-  bot = telegram.Bot(token= os.environ['telegram_token'])
   main()
     
     
