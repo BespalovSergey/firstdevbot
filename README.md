@@ -4,7 +4,8 @@
 Необходимо :
 
  1 Установить необходимые зависимости  командой 
-     pip install -r requirements.txt
+    
+    pip install -r requirements.txt
  
  2 в корне создать файл ".env "  с следующим содержанием
 
@@ -13,5 +14,7 @@
     devman_token = 'Токен Девмана
     telegram_chat_id = ' Ваш id чата' (его можно узнать обратившись с командой /start к телеграм боту с именем userinfobot)
     
- 3 Запустить файл main.py набрав в консоли команду ( python main.py )  
+ 3 Запустить файл main.py набрав в консоли команду 
+ 
+    python main.py
     
